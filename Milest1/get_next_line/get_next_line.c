@@ -5,45 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 11:48:19 by tiarakot          #+#    #+#             */
-/*   Updated: 2026/02/20 12:24:28 by brportos         ###   ########.fr       */
+/*   Created: 2026/02/24 12:56:40 by brportos          #+#    #+#             */
+/*   Updated: 2026/02/25 15:00:58 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-        size_t  i;
-        size_t  src_len;
+	char	*sub;
 
-        i = 0;
-        src_len = ft_strlen(src);
-        if(!dst || !src)
-                return (0);
-        if(size == 0)
-                return (src_len);
-        while (src[i] && i < size -1)
-        {
-                dst[i] = src[i];
-                i++;
-        }
-        dst[i] = '\0';
-        return (i);
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > (ft_strlen(s) - start))
+		len = (ft_strlen(s) - start);
+	sub = malloc(sizeof * sub * (len + 1));
+	if (!sub)
+		return (NULL);
+	ft_strlcpy(sub, s + start, len + 1);
+	return (sub);
 }
 
-char	*ft_concatenation(int fd, char *tmp)
+char	*ft_read_and_concatanate(int fd, char *tmp)
 {
 	char	*buf;
-	char 	*keep_tmp;
+	char	*keep_tmp;
 	ssize_t	size;
 
+	size = 1;
 	if (!tmp)
 		tmp = ft_strdup("");
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
-	size = 1;
 	while (!ft_strchr(tmp, '\n') && size > 0)
 	{
 		size = read(fd, buf, BUFFER_SIZE);
@@ -61,26 +58,26 @@ char	*ft_concatenation(int fd, char *tmp)
 	return (tmp);
 }
 
-
-char	*ft_fetch_line(char *tmp)
+char	*line_extraction(char *tmp)
 {
-	char	*line;
 	int		i;
+	char	*line;
 
 	i = 0;
-	if (!tmp)
+	if (!tmp[i])
 		return (NULL);
 	while (tmp[i] && tmp[i] != '\n')
 		i++;
 	line = ft_substr(tmp, 0, i + (tmp[i] == '\n'));
+	free(tmp);
+	tmp = NULL;
 	return (line);
 }
 
-
-char	*updating_tmp(char *tmp)
+char	*updating_line(char *tmp)
 {
-	int		i;
 	char	*keep_tmp;
+	int		i;
 
 	i = 0;
 	while (tmp[i] && tmp[i] != '\n')
@@ -88,26 +85,26 @@ char	*updating_tmp(char *tmp)
 	if (!tmp[i])
 	{
 		free(tmp);
+		tmp = NULL;
 		return (NULL);
 	}
 	keep_tmp = ft_substr(tmp, i + 1, ft_strlen(tmp) - i);
 	free(tmp);
+	tmp = NULL;
 	return (keep_tmp);
 }
 
-
 char	*get_next_line(int fd)
 {
-	static char	*tmp;
 	char		*line;
+	static char	*tmp;
 
-	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 && BUFFER_SIZE <= 0)
 		return (NULL);
-	tmp = ft_concatenation(fd, tmp);
+	tmp = ft_read_and_concatanate(fd, tmp);
 	if (!tmp)
 		return (NULL);
-	line = ft_fetch_line(tmp);
-	tmp = updating_tmp(tmp);
+	line = line_extraction(tmp);
+	tmp = updating_line(tmp);
 	return (line);
 }

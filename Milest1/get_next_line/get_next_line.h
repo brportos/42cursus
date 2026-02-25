@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 13:39:23 by tiarakot          #+#    #+#             */
-/*   Updated: 2026/02/20 12:24:37 by brportos         ###   ########.fr       */
+/*   Created: 2026/02/24 12:56:33 by brportos          #+#    #+#             */
+/*   Updated: 2026/02/25 12:07:23 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,11 @@
 #  define BUFFER_SIZE 5
 # endif
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s);
-char	*ft_concatenation(int fd, char *tmp);
-char	*ft_fetch_line(char *tmp);
-char	*updating_tmp(char *tmp);
-size_t ft_strlcpy(char *dst, const char *src, size_t size);
-char    *ft_substr(char const *s, unsigned int start, size_t len);
-
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+size_t	ft_strlen(const char *s);
+char	*get_next_line(int fd);
 #endif
