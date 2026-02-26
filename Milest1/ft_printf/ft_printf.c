@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 10:32:52 by brportos          #+#    #+#             */
-/*   Updated: 2026/02/20 12:06:06 by brportos         ###   ########.fr       */
+/*   Updated: 2026/02/23 09:28:32 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printf(const char *str, ...)
 
 	len = 0;
 	if (!str)
-		return (0);
+		return (-1);
 	va_start(ap, str);
 	while (*str)
 	{

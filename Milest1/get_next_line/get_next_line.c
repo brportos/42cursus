@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:56:40 by brportos          #+#    #+#             */
-/*   Updated: 2026/02/25 15:00:58 by brportos         ###   ########.fr       */
+/*   Updated: 2026/02/26 12:17:19 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_read_and_concatanate(int fd, char *tmp)
 		if (size == -1)
 		{
 			free(buf);
-			return (NULL);
+			return (free(tmp), NULL);
 		}
 		buf[size] = '\0';
 		keep_tmp = tmp;
@@ -69,8 +69,6 @@ char	*line_extraction(char *tmp)
 	while (tmp[i] && tmp[i] != '\n')
 		i++;
 	line = ft_substr(tmp, 0, i + (tmp[i] == '\n'));
-	free(tmp);
-	tmp = NULL;
 	return (line);
 }
 
@@ -97,7 +95,7 @@ char	*updating_line(char *tmp)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*tmp;
+	static char	*tmp = NULL;
 
 	if (fd < 0 && BUFFER_SIZE <= 0)
 		return (NULL);

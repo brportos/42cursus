@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by brportos.*
+*This project has been created as part of the 42 curriculum by `brportos`.*
 # ft_printf
 ## Description
 **ft_printf** is a custom implementation of the standard C library function printf. The purpose of this project is to recreate the original printf function in order to deepen my understanding of:
@@ -34,22 +34,35 @@ The following format specifiers are implemented:
 ---
 ## Instructions
 1. Compile the library using:
-```
+```sh
 make
 ```
-This will generate the libftprintf.a file.
+This will generate the `libftprintf.a` file.
 Available Makefile rules:
-```
+```sh
 make clean   : removes object files
 make fclean  : removes object files and libftprintf.a
 make re      : rebuilds the library
 ```
 2. To use the library in your project, include the header:
-```
+```c
 #include "ft_printf.h"
 ```
-3. Compile your program with libft:
+3. To Compile your program with `libftprintf`:
+
+Create your `main.c` and put `libftprintf` header (.h) above.
+```c
+#include "ft_printf.h"
+
+int	main()
+{
+	int d = ft_printf(NULL);
+	ft_printf("%d\n", d);
+
+}
 ```
+And then compile your programm with the command below
+```sh
 cc -Wall -Wextra -Werror main.c -IL libftprintf.a
 ```
 ## Resources
@@ -60,6 +73,7 @@ Google
 Peer-to-peer discussions
 
 Youtube
+https://www.youtube.com/watch?v=byRw36Y3Hjs
 
 AI
 
@@ -68,7 +82,7 @@ AI tools were used only for explanations of concepts and function specifications
 
 ## Detailed ft_printf description
 
-ft_printf is a custom reimplementation of the standard C printf function. The project is to understand and reproduce formatted output handling using variadic arguments, manual format parsing, and low-level writing functions — without relying on the original printf. Unlike a full implementation of printf, this version focuses on a controlled subset of conversions while strictly respecting the constraints of the 42 curriculum.
+`ft_printf` is a custom reimplementation of the standard C printf function. The project is to understand and reproduce formatted output handling using variadic arguments, manual format parsing, and low-level writing functions — without relying on the original printf. Unlike a full implementation of printf, this version focuses on a controlled subset of conversions while strictly respecting the constraints of the 42 curriculum.
 
 This library is organized into nine main functional components:
 
@@ -78,9 +92,9 @@ Entry point of the program
 
 Parses the format string
 
-Detects % specifiers
+Detects `%` specifiers
 
-Initializes and manages va_list
+Initializes and manages `va_list`
 
 Returns the total number of printed characters
 
@@ -98,40 +112,64 @@ Updates the printed length counter
 
 Prints a single character
 
-Handles %c and %%
+Handles `%c` and `%%`
 
 ### ft_putstr
 
 Prints a null-terminated string
 
-Handles %s
+Handles `%s`
 
 Safely manages NULL strings
 
 ### ft_putnbr
 
-Prints signed integers (%d, %i)
+Prints signed integers `(%d, %i)`
 
 Handles negative numbers safely
 
 ### ft_putunnbr
 
-Prints unsigned integers (%u)
+Prints unsigned integers `(%u)`
 
 ### ft_putlowhex
 
-Prints hexadecimal in lowercase (%x)
+Prints hexadecimal in lowercase `(%x)`
 
 ### ft_putuphex
 
-Prints hexadecimal in uppercase (%X)
+Prints hexadecimal in uppercase `(%X)`
 
 ### ft_putaddress
 
-Prints void * pointers (%p)
+Prints void * pointers `(%p)`
 
-Adds "0x" prefix
+Adds `"0x"` prefix
 
 Converts the address to hexadecimal
 
 Handles NULL pointers safely
+
+## A detailed explanation and justification algorithm and data structure
+
+1_Iterate through the format string character by character.
+
+2_If the current character is not `%`, print it directly.
+
+3_If `%` is encountered:
+
+	- Move to the next character.
+
+	- Identify the conversion specifier.
+
+	- Call the appropriate handler function.
+
+4_Accumulate and return total printed character count.
+
+Required Data Structure
+```c
+va_list ap;
+va_start(ap, format);
+va_arg(ap, type);
+va_end(ap);
+```
