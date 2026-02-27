@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:56:40 by brportos          #+#    #+#             */
-/*   Updated: 2026/02/26 12:17:19 by brportos         ###   ########.fr       */
+/*   Updated: 2026/02/27 12:07:04 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,13 @@ char	*ft_read_and_concatanate(int fd, char *tmp)
 	{
 		size = read(fd, buf, BUFFER_SIZE);
 		if (size == -1)
-		{
-			free(buf);
-			return (free(tmp), NULL);
-		}
+			return (free(tmp), free(buf), NULL);
 		buf[size] = '\0';
 		keep_tmp = tmp;
 		tmp = ft_strjoin(keep_tmp, buf);
 		free(keep_tmp);
 	}
-	free(buf);
-	return (tmp);
+	return (free(buf), tmp);
 }
 
 char	*line_extraction(char *tmp)
@@ -95,7 +91,7 @@ char	*updating_line(char *tmp)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*tmp = NULL;
+	static char	*tmp;
 
 	if (fd < 0 && BUFFER_SIZE <= 0)
 		return (NULL);
