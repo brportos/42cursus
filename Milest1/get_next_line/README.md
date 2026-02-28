@@ -28,9 +28,9 @@ int	main()
 	while (buf != NULL)
 	{
 		ft_printf("%s\n", buf);
-		buf = get_next_line(fd);
 		free(buf);
 		buf = NULL;
+		buf = get_next_line(fd);
 	}
 	close(fd);
 }
@@ -39,11 +39,11 @@ Then compile the project using one of the following commands:
 
 With a specific BUFFER_SIZE:
 ```sh
-cc -Wall -Wextra -Werror  BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 *c
 ```
 Or without defining BUFFER_SIZE (if it is already defined in the header file):
 ```sh
-cc -Wall -Wextra -Werror main.c get_next_line.c get_next_line_utils.c
+cc *c
 ```
 ### Execution
 

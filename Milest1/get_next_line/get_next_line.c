@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:56:40 by brportos          #+#    #+#             */
-/*   Updated: 2026/02/27 12:07:04 by brportos         ###   ########.fr       */
+/*   Updated: 2026/02/28 09:18:26 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
+		return (NULL);
 	if (len > (ft_strlen(s) - start))
 		len = (ft_strlen(s) - start);
 	sub = malloc(sizeof * sub * (len + 1));
@@ -29,7 +29,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-char	*ft_read_and_concatanate(int fd, char *tmp)
+static char	*ft_read_and_concatenating(int fd, char *tmp)
 {
 	char	*buf;
 	char	*keep_tmp;
@@ -54,7 +54,7 @@ char	*ft_read_and_concatanate(int fd, char *tmp)
 	return (free(buf), tmp);
 }
 
-char	*line_extraction(char *tmp)
+static char	*line_extraction(char *tmp)
 {
 	int		i;
 	char	*line;
@@ -68,7 +68,7 @@ char	*line_extraction(char *tmp)
 	return (line);
 }
 
-char	*updating_line(char *tmp)
+static char	*updating_line(char *tmp)
 {
 	char	*keep_tmp;
 	int		i;
@@ -95,7 +95,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 && BUFFER_SIZE <= 0)
 		return (NULL);
-	tmp = ft_read_and_concatanate(fd, tmp);
+	tmp = ft_read_and_concatenating(fd, tmp);
 	if (!tmp)
 		return (NULL);
 	line = line_extraction(tmp);
