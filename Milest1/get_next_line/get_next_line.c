@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:56:40 by brportos          #+#    #+#             */
-/*   Updated: 2026/02/28 09:18:26 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/02 12:41:53 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*tmp;
 
-	if (fd < 0 && BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	tmp = ft_read_and_concatenating(fd, tmp);
 	if (!tmp)
