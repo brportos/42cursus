@@ -1,45 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   selection_sort.c                                   :+:      :+:    :+:   */
+/*   Chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 16:07:49 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/11 16:25:55 by brportos         ###   ########.fr       */
+/*   Created: 2026/03/13 11:14:45 by brportos          #+#    #+#             */
+/*   Updated: 2026/03/13 12:18:07 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	find_min(t_stack *a)
+int	stack_size(t_stack *a)
 {
-	int	min;
+	int	count;
 
-	min = a->content;
+	count = 0;
 	while (a)
 	{
-		if (a->content < min)
-			min = a->content;
+		count++;
 		a = a->next;
 	}
-	return (min);
+	return (count);
 }
-static void	move_min_top(t_stack **a)
-{
-	int	min;
 
-	min = find_min(*a);
-	while ((*a)->content != min)
-		ft_a_rotation(a);
-}
-void	selection_sort(t_stack **a, t_stack **b)
+int	find_max(t_stack *a)
 {
-	while (*a)
+	int	max;
+
+	max = a->content;
+	while (a)
 	{
-		move_min_top(a);
-		ft_pb(a, b);
+		if (a->content > max)
+			max = a->content;
+		a = a->next;
 	}
+	return (max);
+}
+
+void	chunk_sort(t_stack **a, t_stack **b)
+{
+	int	size;
+	int	chunk_size;
+
+	size = stack_size(*a);
+	chunk_size = chunck_size(size);
+	pb_chunks(a, b, chunk_size);
 	while (*b)
+	{
+		while ((*b)->content != find_max(*b))
+			ft_b_rotation(b);
 		ft_pa(a, b);
+	}
 }

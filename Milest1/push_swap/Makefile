@@ -18,7 +18,10 @@ SRC = ft_swap.c \
 		ft_stack_rrotation.c \
 		ft_a_rrotation.c \
 		ft_b_rrotation.c \
-		ft_a_and_b_rrotation.c 
+		ft_a_and_b_rrotation.c \
+		selection_sort.c \
+		chunk_sort.c \
+		chunck_utils.c 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)

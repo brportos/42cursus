@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:25:31 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/10 11:45:07 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/13 11:45:11 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_stack
 {
 	int				content;
+	int				index;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -39,5 +40,14 @@ void				ft_stack_rrotation(t_stack **head);
 void				ft_a_rrotation(t_stack **head);
 void				ft_b_rrotation(t_stack **head);
 void				ft_a_and_b_rrotation(t_stack **a_head, t_stack **b_head);
+
+void				selection_sort(t_stack **a, t_stack **b);
+
+void				pb_chunks(t_stack **a, t_stack **b, int chunk_size);
+int					stack_size(t_stack *a);
+int					find_max(t_stack *a);
+int					ft_sqrt(int nb);
+int					chunck_size(int size);
+void				chunk_sort(t_stack **a, t_stack **b);
 
 #endif
