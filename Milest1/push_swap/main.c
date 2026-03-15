@@ -1,6 +1,4 @@
 #include "push_swap.h"
-#include "./libft/libft.h"
-#include <stdlib.h>
 
 int main(int ac, char **av)
 {

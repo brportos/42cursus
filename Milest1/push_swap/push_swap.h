@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:25:31 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/15 13:00:19 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/15 13:23:03 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+#include "./ft_printf/ft_printf.h"
+#include "./libft/libft.h"
 
 typedef struct s_stack
 {

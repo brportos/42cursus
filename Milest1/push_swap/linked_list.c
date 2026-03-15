@@ -6,12 +6,11 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 12:37:46 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/15 12:59:46 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/15 13:22:36 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../ft_printf/ft_printf.h"
 
 t_stack	*ft_stacknew(int content)
 {
