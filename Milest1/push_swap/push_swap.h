@@ -6,17 +6,17 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:25:31 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/15 13:23:03 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:18:35 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "./ft_printf/ft_printf.h"
+# include "./libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
-#include "./ft_printf/ft_printf.h"
-#include "./libft/libft.h"
 
 typedef struct s_stack
 {
@@ -45,15 +45,17 @@ void				selection_sort(t_stack **a, t_stack **b);
 void				pb_chunks(t_stack **a, t_stack **b, int chunk_size);
 int					stack_size(t_stack *a);
 int					find_max(t_stack *a);
-int					ft_sqrt(int nb);
+int					ft_sqr(int nb);
 int					chunck_size(int size);
 void				chunk_sort(t_stack **a, t_stack **b);
 char				**ft_split(char const *s, char c);
 void				radix_sort(t_stack **a, t_stack **b);
 
 t_stack				*ft_stacknew(int content);
-t_stack				*ft_stacklast(t_stack *lst);
 void				ft_stackadd_back(t_stack **lst, t_stack *new);
 void				print_stack(t_stack *a);
+void				push_swap(t_stack **a, t_stack **b);
+int					min_position(t_stack *a);
+int					find_min(t_stack *a);
 
 #endif

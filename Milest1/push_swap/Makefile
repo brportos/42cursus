@@ -6,21 +6,25 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 OBJ_DIR = obj
-SRC = swap.c \
-		stack_rotation.c \
-		stack_rrotation.c \
-		selection_sort.c \
-		chunk_sort.c \
-		chunk_utils.c \
-		radix_sort.c \
+SRC = operations/swap.c \
+		operations/stack_rotation.c \
+		operations/stack_rrotation.c \
+		sorted/selection_sort.c \
+		sorted/chunk_sort.c \
+		utils/chunk_utils.c \
+		sorted/radix_sort.c \
+		utils/linked_list.c \
 		main.c \
-		linked_list.c 
+		sorted/disorder.c \
+		operations/push_stack.c \
+		utils/find_min.c 
+
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(LIBFT) $(PRINTF) $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(PRINTF):
