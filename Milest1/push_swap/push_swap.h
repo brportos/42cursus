@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:25:31 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/16 12:18:35 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/17 11:45:48 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ void				print_stack(t_stack *a);
 void				push_swap(t_stack **a, t_stack **b);
 int					min_position(t_stack *a);
 int					find_min(t_stack *a);
+int					is_sorted(t_stack *a);
+int					repetition_numbers(t_stack *a);
 
 #endif

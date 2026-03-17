@@ -1,44 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_rotation.c                                   :+:      :+:    :+:   */
+/*   deallocate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/09 12:33:20 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/17 11:43:53 by brportos         ###   ########.fr       */
+/*   Created: 2026/03/17 11:13:48 by brportos          #+#    #+#             */
+/*   Updated: 2026/03/17 11:51:52 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	stack_rotation(t_stack **a)
+void	ft_stackclear(t_stack **a, void (*del)(int))
 {
-	t_stack	*last;
+	t_stack	*tmp;
+	t_stack	*top;
 
-	if (*a == NULL || (*a)->next == NULL)
+	if (!a || !*a || !del)
 		return ;
-	last = *a;
-	while (last->next != NULL)
-		last = last->next;
-	last->next = *a;
-	*a = (*a)->next;
-	last->next->next = NULL;
+	top = *a;
+	while (top)
+	{
+		tmp = (top)->next;
+		del((top)->content);
+		free(top);
+		top = tmp;
+	}
+	*a = NULL;
 }
-void	ra(t_stack **a)
+int	repetition_numbers(t_stack *a)
 {
-	stack_rotation(a);
-	write(1, "ra\n", 3);
-}
+	t_stack	*j;
 
-void	rb(t_stack **a)
-{
-	stack_rotation(a);
-	write(1, "rb\n", 3);
-}
-void	rr(t_stack **a, t_stack **b)
-{
-	stack_rotation(a);
-	stack_rotation(b);
-	write(1, "rr\n", 3);
+	while (a)
+	{
+		j = a->next;
+		while (j)
+		{
+			if (a->content == j->content)
+				return (1);
+			j = j->next;
+		}
+		a = a->next;
+	}
+	return (0);
 }

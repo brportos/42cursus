@@ -17,6 +17,8 @@ int	stack_size(t_stack *a)
 	int	count;
 
 	count = 0;
+	if (!a)
+		return (0);
 	while (a)
 	{
 		count++;
@@ -29,6 +31,8 @@ int	find_max(t_stack *a)
 {
 	int	max;
 
+	if (!a)
+		return (0);
 	max = a->content;
 	while (a)
 	{
@@ -39,18 +43,55 @@ int	find_max(t_stack *a)
 	return (max);
 }
 
+int	max_position(t_stack *b)
+{
+	int	max;
+	int	pos;
+	int	i;
+
+	max = find_max(b);
+	pos = 0;
+	i = 0;
+	if (!b)
+		return (0);
+	while (b)
+	{
+		if (b->content == max)
+		{
+			pos = i;
+			break ;
+		}
+		i++;
+		b = b->next;
+	}
+	return (pos);
+}
+
 void	chunk_sort(t_stack **a, t_stack **b)
 {
 	int	size;
 	int	chunk_size;
+	int	pos;
 
+	if (!*a)
+		return ;
 	size = stack_size(*a);
 	chunk_size = chunck_size(size);
 	pb_chunks(a, b, chunk_size);
 	while (*b)
 	{
-		while ((*b)->content != find_max(*b))
-			rb(b);
+		pos = max_position(*b);
+		if (pos < stack_size(*a))
+		{
+			while ((*b)->content != find_max(*b))
+				rb(b);
+		}
+		else
+		{
+			while ((*b)->content != find_max(*b))
+				rb(b);
+		}
 		pa(a, b);
 	}
 }
+

@@ -19,7 +19,6 @@ int main(int ac, char **av)
 		ft_stackadd_back(&a, ft_stacknew(n));
 		i++;
 	}
-	print_stack(a);
 	push_swap(&a, &b);
 	print_stack(a);
 }

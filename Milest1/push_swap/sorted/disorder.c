@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 08:31:17 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/16 12:37:25 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/17 12:03:39 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static double	compute_disorder(t_stack *a)
 {
 	t_stack	*i;
-	int	mistakes;
-	int	total_pairs;
+	int		mistakes;
+	int		total_pairs;
 
 	mistakes = 0;
 	total_pairs = 0;
@@ -43,7 +43,7 @@ void	sort_three(t_stack **a)
 	int	second;
 	int	third;
 
-	if (!a || (*a)->next->next)
+	if (!a || !(*a) || !(*a)->next || !(*a)->next->next)
 		return ;
 	first = (*a)->content;
 	second = (*a)->next->content;
@@ -68,9 +68,9 @@ void	sort_three(t_stack **a)
 
 int	min_position(t_stack *a)
 {
-	int min;
-	int pos;
-	int i;
+	int	min;
+	int	pos;
+	int	i;
 
 	min = find_min(a);
 	pos = 0;
@@ -92,9 +92,12 @@ int	min_position(t_stack *a)
 
 void	sort_five(t_stack **a, t_stack **b)
 {
-	int pos;
+	int	pos;
+
 	if (!a || !(*a))
-		NULL;
+		return ;
+	if (is_sorted(*a) == 1)
+		return ;
 	while (stack_size(*a) > 3)
 	{
 		pos = min_position(*a);
@@ -113,21 +116,25 @@ void	sort_five(t_stack **a, t_stack **b)
 void	push_swap(t_stack **a, t_stack **b)
 {
 	double	disorder;
-	int	size;
+	int		size;
 
 	disorder = compute_disorder(*a);
 	size = stack_size(*a);
-	if (disorder == 0)
-			print_stack(*a);
-	else if (size <= 3)
+	if (repetition_numbers(*a))
+		return ((void)write(2, "Error\n", 6), exit(1));
+	if (is_sorted(*a) == 1)
+		return;
+	if (size == 2)
+		ra(a);
+	else if (size == 3)
 		sort_three(a);
-	else if(size > 3 && size <= 5)
+	else if (size > 3 && size <= 5)
 		sort_five(a, b);
 	else
 	{
-		if (disorder <  0.2)
+		if (disorder < 0.2)
 			selection_sort(a, b);
-		else if (disorder <= 0.2  && disorder < 0.5)
+		else if (disorder <= 0.2 && disorder < 0.5)
 			chunk_sort(a, b);
 		else
 			radix_sort(a, b);

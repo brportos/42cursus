@@ -17,7 +17,9 @@ SRC = operations/swap.c \
 		main.c \
 		sorted/disorder.c \
 		operations/push_stack.c \
-		utils/find_min.c 
+		utils/find_min.c \
+		utils/is_sorted.c \
+		utils/deallocate.c
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
