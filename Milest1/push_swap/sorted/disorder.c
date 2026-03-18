@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 08:31:17 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/17 12:03:39 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/18 13:52:48 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,44 +66,23 @@ void	sort_three(t_stack **a)
 		rra(a);
 }
 
-int	min_position(t_stack *a)
-{
-	int	min;
-	int	pos;
-	int	i;
-
-	min = find_min(a);
-	pos = 0;
-	i = 0;
-	if (!a)
-		return (0);
-	while (a)
-	{
-		if (a->content == min)
-		{
-			pos = i;
-			break ;
-		}
-		i++;
-		a = a->next;
-	}
-	return (pos);
-}
 
 void	sort_five(t_stack **a, t_stack **b)
 {
 	int	pos;
+	int	size;
 
+	size = stack_size(*a);
 	if (!a || !(*a))
 		return ;
 	if (is_sorted(*a) == 1)
 		return ;
-	while (stack_size(*a) > 3)
+	while (size > 3)
 	{
 		pos = min_position(*a);
 		if (pos == 0)
 			pb(a, b);
-		else if (pos <= stack_size(*a) / 2)
+		else if (pos <= size / 2)
 			ra(a);
 		else
 			rra(a);

@@ -9,17 +9,19 @@ OBJ_DIR = obj
 SRC = operations/swap.c \
 		operations/stack_rotation.c \
 		operations/stack_rrotation.c \
+		operations/push_stack.c \
+		sorted/disorder.c \
 		sorted/selection_sort.c \
 		sorted/chunk_sort.c \
-		utils/chunk_utils.c \
 		sorted/radix_sort.c \
 		utils/linked_list.c \
-		main.c \
-		sorted/disorder.c \
-		operations/push_stack.c \
-		utils/find_min.c \
+		utils/find_min_max.c \
 		utils/is_sorted.c \
-		utils/deallocate.c
+		utils/deallocate.c \
+		utils/position_min_max.c \
+		main.c 
+
+
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 

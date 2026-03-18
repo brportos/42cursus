@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:25:31 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/17 11:45:48 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/18 13:53:43 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void				pb_chunks(t_stack **a, t_stack **b, int chunk_size);
 int					stack_size(t_stack *a);
 int					find_max(t_stack *a);
 int					ft_sqr(int nb);
-int					chunck_size(int size);
 void				chunk_sort(t_stack **a, t_stack **b);
 char				**ft_split(char const *s, char c);
 void				radix_sort(t_stack **a, t_stack **b);
@@ -55,9 +54,12 @@ t_stack				*ft_stacknew(int content);
 void				ft_stackadd_back(t_stack **lst, t_stack *new);
 void				print_stack(t_stack *a);
 void				push_swap(t_stack **a, t_stack **b);
+int					max_position(t_stack *b);
 int					min_position(t_stack *a);
 int					find_min(t_stack *a);
 int					is_sorted(t_stack *a);
 int					repetition_numbers(t_stack *a);
+void				sort_three(t_stack **a);
+void				sort_five(t_stack **a, t_stack **b);
 
 #endif
