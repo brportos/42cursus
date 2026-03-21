@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 08:31:17 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/18 13:52:48 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/21 11:39:42 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,44 @@ void	sort_three(t_stack **a)
 		rra(a);
 }
 
+int	min_position(t_stack *a)
+{
+	int	min;
+	int	pos;
+	int	i;
+
+	min = find_min(a);
+	pos = 0;
+	i = 0;
+	if (!a)
+		return (0);
+	while (a)
+	{
+		if (a->content == min)
+		{
+			pos = i;
+			break ;
+		}
+		i++;
+		a = a->next;
+	}
+	return (pos);
+}
 
 void	sort_five(t_stack **a, t_stack **b)
 {
 	int	pos;
-	int	size;
 
-	size = stack_size(*a);
 	if (!a || !(*a))
 		return ;
 	if (is_sorted(*a) == 1)
 		return ;
-	while (size > 3)
+	while (stack_size(*a) > 3)
 	{
 		pos = min_position(*a);
 		if (pos == 0)
 			pb(a, b);
-		else if (pos <= size / 2)
+		else if (pos <= stack_size(*a) / 2)
 			ra(a);
 		else
 			rra(a);
@@ -113,7 +134,7 @@ void	push_swap(t_stack **a, t_stack **b)
 	{
 		if (disorder < 0.2)
 			selection_sort(a, b);
-		else if (disorder <= 0.2 && disorder < 0.5)
+		else if (disorder >= 0.2 && disorder < 0.5)
 			chunk_sort(a, b);
 		else
 			radix_sort(a, b);

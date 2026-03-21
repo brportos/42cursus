@@ -1,60 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position_min_max.c                                 :+:      :+:    :+:   */
+/*   chunk_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/18 12:02:43 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/18 12:06:31 by brportos         ###   ########.fr       */
+/*   Created: 2026/03/13 10:57:46 by brportos          #+#    #+#             */
+/*   Updated: 2026/03/18 10:58:45 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	max_position(t_stack *b)
+int	ft_sqr(int nb)
 {
-	int	max;
-	int	pos;
 	int	i;
 
-	max = find_max(b);
-	pos = 0;
-	i = 0;
-	if (!b)
+	i = 1;
+	if (nb <= 0)
 		return (0);
-	while (b)
+	while (i < nb / i)
 	{
-		if (b->content == max)
-		{
-			pos = i;
-			break ;
-		}
+		if (i * i == nb)
+			return (i);
 		i++;
-		b = b->next;
 	}
-	return (pos);
+	return (i -1);
 }
-int	min_position(t_stack *a)
-{
-	int	min;
-	int	pos;
-	int	i;
 
-	min = find_min(a);
-	pos = 0;
-	i = 0;
-	if (!a)
-		return (0);
-	while (a)
+int	chunck_size(int size)
+{
+	int	sqr;
+
+	sqr = ft_sqr(size);
+	return (sqr);
+}
+
+void	pb_chunks(t_stack **a, t_stack **b, int chunk_size)
+{
+	int	pushed;
+
+	pushed = 0;
+	while (*a)
 	{
-		if (a->content == min)
+		if ((*a)->index <= pushed)
 		{
-			pos = i;
-			break ;
+			pb(a, b);
+			rb(b);
+			pushed++;
 		}
-		i++;
-		a = a->next;
+		else if ((*a)->index <= pushed + chunk_size)
+		{
+			pb(a, b);
+			pushed++;
+		}
+		else
+			ra(a);
 	}
-	return (pos);
 }

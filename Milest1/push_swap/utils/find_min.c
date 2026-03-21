@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_min_max.c                                     :+:      :+:    :+:   */
+/*   find_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 11:48:28 by herinaan          #+#    #+#             */
-/*   Updated: 2026/03/18 11:56:04 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:29:15 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,4 @@ int	find_min(t_stack *a)
 		a = a->next;
 	}
 	return (min);
-}
-
-int	find_max(t_stack *a)
-{
-	int	max;
-
-	if (!a)
-		return (0);
-	max = a->content;
-	while (a)
-	{
-		if (a->content > max)
-			max = a->content;
-		a = a->next;
-	}
-	return (max);
 }

@@ -1,24 +1,19 @@
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int	i;
 	t_stack	*a;
 	t_stack	*b;
-	int	n;
 
-	i = 1;
 	a = NULL;
 	b = NULL;
 	if (ac < 2)
 		return (0);
-
-	while (i < ac)
-	{
-		n = ft_atoi(av[i]);
-		ft_stackadd_back(&a, ft_stacknew(n));
-		i++;
-	}
+	if (ac == 2 && ft_strchr(av[1], ' '))
+		isDoubleQuoted(&a, av);
+	else
+		isUnquoted(&a, ac, av);
 	push_swap(&a, &b);
 	print_stack(a);
+	ft_stackclear(&a);
 }

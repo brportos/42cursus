@@ -9,19 +9,18 @@ OBJ_DIR = obj
 SRC = operations/swap.c \
 		operations/stack_rotation.c \
 		operations/stack_rrotation.c \
-		operations/push_stack.c \
-		sorted/disorder.c \
 		sorted/selection_sort.c \
 		sorted/chunk_sort.c \
+		utils/chunk_utils.c \
 		sorted/radix_sort.c \
 		utils/linked_list.c \
-		utils/find_min_max.c \
+		main.c \
+		sorted/disorder.c \
+		operations/push_stack.c \
+		utils/find_min.c \
 		utils/is_sorted.c \
 		utils/deallocate.c \
-		utils/position_min_max.c \
-		main.c 
-
-
+		utils/rmquote.c 
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
@@ -36,7 +35,7 @@ $(PRINTF):
 $(LIBFT):
 	@make -C libft
 $(NAME): $(LIBFT) $(PRINTF) $(OBJ)
-	@ar rcs $@ $^
+	$(CC) $(CFLAGS) -o $@   $(OBJ) $(LIBFT) $(PRINTF)
 	@echo "push_swap is created"
 
 clean:
