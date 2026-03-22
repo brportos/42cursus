@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 11:14:45 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/21 11:33:02 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:32:18 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,15 @@ void	chunk_sort(t_stack **a, t_stack **b)
 {
 	int	size;
 	int	chunk_size;
-	int	pos;
 
 	if (!*a)
 		return ;
 	size = stack_size(*a);
-	chunk_size = chunck_size(size);
+	chunk_size = ft_sqr(size);
 	pb_chunks(a, b, chunk_size);
 	while (*b)
 	{
-		pos = max_position(*b);
-		if (pos < stack_size(*b)/ 2)
+		if (max_position(*b) < stack_size(*b)/ 2)
 		{
 			while ((*b)->content != find_max(*b))
 				rb(b);

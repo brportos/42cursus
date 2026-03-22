@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 10:57:46 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/18 10:58:45 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/22 14:14:41 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,33 @@ int	ft_sqr(int nb)
 			return (i);
 		i++;
 	}
-	return (i -1);
+	return (i - 1);
 }
 
-int	chunck_size(int size)
+void	sort_small(t_stack **a, t_stack **b)
 {
-	int	sqr;
+	int	size;
+	int	pos;
 
-	sqr = ft_sqr(size);
-	return (sqr);
+	if (!a || !(*a) || is_sorted(*a))
+		return ;
+	size = stack_size(*a);
+	while (size > 5)
+	{
+		pos = min_position(*a);
+		if (pos == 0)
+		{
+			pb(a, b);
+			size--;
+		}
+		else if (pos <= size / 2)
+			ra(a);
+		else
+			rra(a);
+	}
+	sort_five(a, b);
+	while (*b)
+		pa(a, b);
 }
 
 void	pb_chunks(t_stack **a, t_stack **b, int chunk_size)

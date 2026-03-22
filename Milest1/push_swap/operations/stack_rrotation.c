@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 07:36:15 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/16 10:33:20 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/22 11:07:48 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 static void	stack_rrotation(t_stack **a)
 {
-	t_stack	*prev;
 	t_stack	*last;
 
 	if (*a == NULL || (*a)->next == NULL)
 		return ;
-	prev = *a;
-	while (prev->next != NULL)
-	{
-		last = prev;
-		prev = prev->next;
-	}
-	prev->next = *a;
+	last = *a;
+	while (last->next->next != NULL)
+		last = last->next;
+	last->next->next  = *a;
+	*a = last->next;
 	last->next = NULL;
-	*a = prev;
 }
 
 void	rra(t_stack **a)

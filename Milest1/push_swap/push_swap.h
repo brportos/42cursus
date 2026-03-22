@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:25:31 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/21 10:46:47 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/22 14:16:49 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void				sort_five(t_stack **a, t_stack **b);
 void				ft_stackclear(t_stack **a);
 void				isDoubleQuoted(t_stack **a, char **av);
 void				isUnquoted(t_stack **a, int ac, char **av);
+void				sort_small(t_stack **a, t_stack **b);
 
 #endif
