@@ -6,13 +6,13 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 09:00:35 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/21 09:02:44 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 13:51:44 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	isDoubleQuoted(t_stack **a, char **av)
+void	isdoublequoted(t_stack **a, char **av)
 {
 	int		i;
 	int		j;
@@ -41,7 +41,7 @@ void	isDoubleQuoted(t_stack **a, char **av)
 	}
 }
 
-void	isUnquoted(t_stack **a, int ac, char **av)
+void	isunquoted(t_stack **a, int ac, char **av)
 {
 	int	n;
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 10:25:06 by brportos          #+#    #+#             */
-/*   Updated: 2026/02/19 10:07:49 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:02:16 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	ft_putuphex(unsigned int nbr, int *len);
 void	ft_putnbr(int nbr, int *len);
 void	ft_putstr(char *str, int *len);
 void	ft_putchar(char c, int *len);
+int	ft_float(double n);
 
 #endif

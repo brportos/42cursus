@@ -26,13 +26,14 @@ SRC = ft_isalpha.c ft_strnstr.c \
 		ft_lstsize.c ft_lstlast.c  \
 		ft_lstadd_back.c ft_lstdelone.c \
 		ft_lstclear.c ft_lstiter.c \
-		ft_lstmap.c
+		ft_lstmap.c \
+		ft_strcmp.c
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(OBJ_DIR)/%.o: %.c 
+$(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 

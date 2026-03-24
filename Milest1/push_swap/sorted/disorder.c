@@ -6,20 +6,20 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 08:31:17 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/22 14:50:16 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 13:22:23 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static double	compute_disorder(t_stack *a, int size)
+double	compute_disorder(t_stack *a)
 {
 	int	mistakes;
 	int	total_pairs;
 
 	mistakes = 0;
 	total_pairs = 0;
-	if (!a || size <= 1)
+	if (!a)
 		return (0);
 	while (a && a->next)
 	{
@@ -107,14 +107,16 @@ void	sort_five(t_stack **a, t_stack **b)
 	pa(a, b);
 }
 
-void	push_swap(t_stack **a, t_stack **b)
+void	adaptive(t_stack **a, t_stack **b)
 {
-	double	disorder;
-	int		size;
+	double		disorder;
+	int			size;
+	
+
 
 	size = stack_size(*a);
 	if (repetition_numbers(*a))
-		return ((void)write(2, "Error\n", 6), exit(1));
+		return (write(2, "Error\n", 6), exit(1));
 	if (is_sorted(*a) == 1)
 		return ;
 	if (size == 2)
@@ -125,10 +127,10 @@ void	push_swap(t_stack **a, t_stack **b)
 		return (sort_five(a, b));
 	if (size <= 15)
 		return (sort_small(a, b));
-	disorder = compute_disorder(*a, size);
+	disorder = compute_disorder(*a);
 	if (disorder < 0.2)
 		selection_sort(a, b);
-	else if (disorder <= 0.2 && disorder < 0.5)
+	else if (disorder >= 0.2 && disorder < 0.5)
 		chunk_sort(a, b);
 	else
 		radix_sort(a, b);

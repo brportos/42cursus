@@ -6,15 +6,15 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 11:45:52 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/21 07:57:31 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 11:38:29 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <limits.h>
 
 typedef struct s_list
 {
@@ -67,5 +67,6 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+int					ft_strcmp(char *s1, char *s2);
 
 #endif

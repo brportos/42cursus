@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 11:14:45 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/22 13:32:18 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/23 07:31:50 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	chunk_sort(t_stack **a, t_stack **b)
 	pb_chunks(a, b, chunk_size);
 	while (*b)
 	{
-		if (max_position(*b) < stack_size(*b)/ 2)
+		if (max_position(*b) < stack_size(*b) / 2)
 		{
 			while ((*b)->content != find_max(*b))
 				rb(b);
@@ -92,4 +92,3 @@ void	chunk_sort(t_stack **a, t_stack **b)
 		pa(a, b);
 	}
 }
-

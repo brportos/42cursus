@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 09:36:08 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/16 12:06:30 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/23 07:46:04 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	radix_sort(t_stack **a, t_stack **b)
 		j = 0;
 		while (j < size)
 		{
-			if ((((*a)->index >> i) & 1) == 1)
+			if ((((*a)->content >> i) & 1) == 1)
 				ra(a);
 			else
 				pb(a, b);

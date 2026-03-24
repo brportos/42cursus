@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 10:57:46 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/22 14:14:41 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/23 12:49:18 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	pb_chunks(t_stack **a, t_stack **b, int chunk_size)
 	pushed = 0;
 	while (*a)
 	{
-		if ((*a)->index <= pushed)
+		if ((*a)->content <= pushed)
 		{
 			pb(a, b);
 			rb(b);
 			pushed++;
 		}
-		else if ((*a)->index <= pushed + chunk_size)
+		else if ((*a)->content <= pushed + chunk_size)
 		{
 			pb(a, b);
 			pushed++;

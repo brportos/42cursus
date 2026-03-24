@@ -9,11 +9,12 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (ac < 2)
 		return (0);
+	apply_flag_strategy(ac, av, &a, &b);
 	if (ac == 2 && ft_strchr(av[1], ' '))
-		isDoubleQuoted(&a, av);
+		isdoublequoted(&a, av);
 	else
-		isUnquoted(&a, ac, av);
-	push_swap(&a, &b);
+		isunquoted(&a, ac, av);
+	adaptive(&a, &b);
 	print_stack(a);
 	ft_stackclear(&a);
 }

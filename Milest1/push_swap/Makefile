@@ -20,7 +20,8 @@ SRC = operations/swap.c \
 		utils/find_min.c \
 		utils/is_sorted.c \
 		utils/deallocate.c \
-		utils/rmquote.c 
+		utils/rmquote.c \
+		utils/strategy_selector.c
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 

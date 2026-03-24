@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 12:37:46 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/16 10:34:07 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 12:04:19 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_stack	*ft_stacknew(int content)
 {
 	t_stack	*node;
 
-	node = malloc(sizeof * node);
+	node = malloc(sizeof *node);
 	if (!node)
 		return (NULL);
 	node->content = content;
@@ -35,7 +35,6 @@ static t_stack	*ft_stacklast(t_stack *lst)
 	return (tmp);
 }
 
-
 void	ft_stackadd_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*last;
@@ -45,7 +44,7 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new)
 		*lst = new;
 		return ;
 	}
-	if (!new && lst)
+	if (!new &&lst)
 		return ;
 	if (!lst && !new)
 		return ;
@@ -66,4 +65,23 @@ void	print_stack(t_stack *a)
 		a = a->next;
 	}
 	ft_printf("\n");
+}
+void	print_bench(t_select *cfg, t_stack *a)
+{
+	(void)cfg;
+	double	disorder;
+
+	disorder = compute_disorder(a);
+	write(2, "[bench] disorder: ", 19);
+	ft_float(disorder * 100);
+	write(2, "\n", 1);
+	ft_putstr_fd("[bench] strategy: Adaptive", 2);
+	ft_float(disorder * 100);
+	write(2, "\n", 1);
+	write(2, "[bench] disorder: ", 19);
+	ft_float(disorder * 100);
+	write(2, "\n", 1);
+	write(2, "[bench] disorder: ", 19);
+	ft_float(disorder * 100);
+	write(2, "\n", 1);
 }

@@ -6,11 +6,38 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 10:16:45 by brportos          #+#    #+#             */
-/*   Updated: 2026/02/23 09:06:09 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 10:15:58 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_float(double n)
+{
+	long	nb;
+	int		i;
+	int len;
+
+	nb = (long)n;
+	i = 0;
+	len = 0;
+	if (n < 0)
+	{
+		ft_putchar('-', &len);
+		n = n * (-1);
+	}
+	ft_putnbr(nb, &len);
+	ft_putchar('.', &len);
+	n = n - nb;
+	while (i < 2)
+	{
+		n = n * 10;
+		ft_putchar((int)n + '0', &len);
+		n = n - (int)n;
+		i++;
+	}
+	return (len);
+}
 
 void	ft_conversion(va_list *ap, char *str, int *len)
 {
@@ -35,5 +62,7 @@ void	ft_conversion(va_list *ap, char *str, int *len)
 	}
 	else if (*str == '%')
 		ft_putchar(*str, len);
+	else if (*str == 'f')
+		ft_float(va_arg(*ap, double));
 	return ;
 }
