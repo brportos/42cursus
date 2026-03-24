@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
+/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 12:37:46 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/24 12:04:19 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 20:12:11 by portos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,24 @@ void	print_stack(t_stack *a)
 	}
 	ft_printf("\n");
 }
-void	print_bench(t_select *cfg, t_stack *a)
+void	print_bench(int flags, t_stack *a, t_stats *st)
 {
-	(void)cfg;
 	double	disorder;
 
+	if (!(flags & F_BENCH))
+		return ;
 	disorder = compute_disorder(a);
-	write(2, "[bench] disorder: ", 19);
-	ft_float(disorder * 100);
-	write(2, "\n", 1);
-	ft_putstr_fd("[bench] strategy: Adaptive", 2);
-	ft_float(disorder * 100);
-	write(2, "\n", 1);
-	write(2, "[bench] disorder: ", 19);
-	ft_float(disorder * 100);
-	write(2, "\n", 1);
-	write(2, "[bench] disorder: ", 19);
-	ft_float(disorder * 100);
-	write(2, "\n", 1);
+	write(2, "\n--- PUSH_SWAP BENCHMARK ---\n", 29);
+	write(2, "[bench] disorder: ", 18);
+	ft_float(disorder * 100); // Assuming your ft_float writes to FD 2
+	write(2, "%\n", 2);
+	ft_putstr_fd("[bench] strategy: Adaptive / O(n√n)\n", 2);
+	ft_printf("[bench] total_ops: %d\n", st->total);
+	ft_printf("[bench] sa: %d | sb: %d | ss: %d\n", st->sa, st->sb, st->ss);
+	ft_printf("[bench] pa: %d | pb: %d\n", st->pa, st->pb);
+	ft_printf("[bench] ra: %d | rb: %d | rr: %d\n", st->ra, st->rb, st->rr);
+	ft_printf("[bench] rra:%d | rrb:%d | rrr:%d\n", st->rra, st->rrb, st->rrr);
+	write(2, "----------------------------\n", 29);
 }
+
+

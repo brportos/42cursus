@@ -3,41 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   selection_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
+/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:07:49 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/18 10:39:16 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 20:45:33 by portos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	move_min_top(t_stack **a)
+static void	move_min_top(t_stack **a, t_stats *st)
 {
 	int	min;
 	int	pos;
+	int	size;
 
+	if (!a || !*a || !(*a)->next)
+		return ;
 	min = find_min(*a);
 	pos = min_position(*a);
-	if (pos < stack_size(*a) / 2)
+	size = stack_size(*a);
+	if (pos <= size / 2)
 	{
 		while ((*a)->content != min)
-			ra(a);
+			ra(a, st);
 	}
 	else
 	{
 		while ((*a)->content != min)
-			rra(a);
+			rra(a, st);
 	}
 }
-void	selection_sort(t_stack **a, t_stack **b)
+void	selection_sort(t_stack **a, t_stack **b, t_stats *st)
 {
+	if (!a || !*a || is_sorted(*a))
+		return ;
 	while (stack_size(*a) > 3)
 	{
-		move_min_top(a);
-		pb(a, b);
+		move_min_top(a, st);
+		pb(a, b, st);
 	}
-	sort_three(a);
+	sort_three(a, st);
 	while (*b)
-		pa(a, b);
+		pa(a, b, st);
 }

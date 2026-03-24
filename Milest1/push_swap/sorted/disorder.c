@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
+/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 08:31:17 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/24 13:22:23 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 20:41:29 by portos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,33 @@ double	compute_disorder(t_stack *a)
 	return ((double)mistakes / total_pairs);
 }
 
-void	sort_three(t_stack **a)
+void	sort_three(t_stack **a, t_stats *st)
 {
-	int	first;
-	int	second;
-	int	third;
+	int	f; // first
+	int	s; // second
+	int	t; // third
 
-	if (!a || !(*a) || !(*a)->next || !(*a)->next->next)
+	if (!a || !*a || !(*a)->next || !(*a)->next->next)
 		return ;
-	first = (*a)->content;
-	second = (*a)->next->content;
-	third = (*a)->next->next->content;
-	if (first > second && second < third && third > first)
-		sa(a);
-	else if (first > second && second > third)
+	f = (*a)->content;
+	s = (*a)->next->content;
+	t = (*a)->next->next->content;
+	if (f > s && s < t && f < t)
+		sa(a, st);
+	else if (f > s && s > t)
 	{
-		ra(a);
-		sa(a);
+		sa(a, st);
+		rra(a, st);
 	}
-	else if (first > second && second < third && third < first)
-		ra(a);
-	else if (first < second && second > third && first < third)
+	else if (f > s && s < t && f > t)
+		ra(a, st);
+	else if (f < s && s > t && f < t)
 	{
-		sa(a);
-		ra(a);
+		sa(a, st);
+		ra(a, st);
 	}
-	else if (first < second && second > third && first > third)
-		rra(a);
+	else if (f < s && s > t && f > t)
+		rra(a, st);
 }
 
 int	min_position(t_stack *a)
@@ -84,54 +84,51 @@ int	min_position(t_stack *a)
 	return (pos);
 }
 
-void	sort_five(t_stack **a, t_stack **b)
+void	sort_five(t_stack **a, t_stack **b, t_stats *st)
 {
 	int	pos;
 
-	if (!a || !(*a))
-		return ;
-	if (is_sorted(*a) == 1)
+	if (!a || !*a || is_sorted(*a))
 		return ;
 	while (stack_size(*a) > 3)
 	{
 		pos = min_position(*a);
 		if (pos == 0)
-			pb(a, b);
+			pb(a, b, st);
 		else if (pos <= stack_size(*a) / 2)
-			ra(a);
+			ra(a, st);
 		else
-			rra(a);
+			rra(a, st);
 	}
-	sort_three(a);
-	pa(a, b);
-	pa(a, b);
+	sort_three(a, st);
+	pa(a, b, st);
+	pa(a, b, st);
 }
 
-void	adaptive(t_stack **a, t_stack **b)
+void	adaptive(t_stack **a, t_stack **b, t_stats *st)
 {
-	double		disorder;
-	int			size;
-	
-
+	double	disorder;
+	int		size;
 
 	size = stack_size(*a);
-	if (repetition_numbers(*a))
-		return (write(2, "Error\n", 6), exit(1));
-	if (is_sorted(*a) == 1)
+	if (is_sorted(*a))
 		return ;
 	if (size == 2)
-		ra(a);
-	if (size == 3)
-		return (sort_three(a));
-	if (size > 3 && size <= 5)
-		return (sort_five(a, b));
-	if (size <= 15)
-		return (sort_small(a, b));
-	disorder = compute_disorder(*a);
-	if (disorder < 0.2)
-		selection_sort(a, b);
-	else if (disorder >= 0.2 && disorder < 0.5)
-		chunk_sort(a, b);
+		sa(a, st);
+	else if (size == 3)
+		sort_three(a, st);
+	else if (size <= 5)
+		sort_five(a, b, st);
+	else if (size <= 15)
+		sort_small(a, b, st);
 	else
-		radix_sort(a, b);
+	{
+		disorder = compute_disorder(*a);
+		if (disorder < 0.2)
+			selection_sort(a, b, st);
+		else if (disorder < 0.5)
+			chunk_sort(a, b, st);
+		else
+			radix_sort(a, b, st);
+	}
 }

@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
+/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:25:31 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/24 15:59:56 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 20:43:32 by portos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+#define SIMPLE  1
+#define MEDIUM  2
+#define COMPLEX  4
+#define BENCH   8
 
 # include "./ft_printf/ft_printf.h"
 # include "./libft/libft.h"
@@ -21,6 +25,7 @@
 typedef struct s_stack
 {
 	int				content;
+	int				index;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -36,6 +41,22 @@ typedef struct s_select
 	char			*strategy;
 	char			*complexity;
 }					t_select;
+
+typedef struct s_stats
+{
+    int sa;
+	int sb;
+	int ss;
+    int pa;
+	int pb;
+    int ra;
+	int rb;
+	int rr;
+    int rra;
+	int rrb;
+	int rrr;
+    int total;
+} t_stats;
 
 typedef void		(*t_strategy)(t_stack **a, t_stack **b, t_select *config);
 void				sa(t_stack **a);

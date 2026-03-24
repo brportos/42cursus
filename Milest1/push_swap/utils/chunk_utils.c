@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
+/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 10:57:46 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/23 12:49:18 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/24 20:52:02 by portos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,51 +28,48 @@ int	ft_sqr(int nb)
 	return (i - 1);
 }
 
-void	sort_small(t_stack **a, t_stack **b)
+void	sort_small(t_stack **a, t_stack **b, t_stats *st)
 {
-	int	size;
 	int	pos;
+	int	size;
 
-	if (!a || !(*a) || is_sorted(*a))
+	if (!a || !*a || is_sorted(*a))
 		return ;
-	size = stack_size(*a);
-	while (size > 5)
+	while (stack_size(*a) > 5)
 	{
 		pos = min_position(*a);
+		size = stack_size(*a);
 		if (pos == 0)
-		{
-			pb(a, b);
-			size--;
-		}
+			pb(a, b, st);
 		else if (pos <= size / 2)
-			ra(a);
+			ra(a, st);
 		else
-			rra(a);
+			rra(a, st);
 	}
-	sort_five(a, b);
+	sort_five(a, b, st);
 	while (*b)
-		pa(a, b);
+		pa(a, b, st);
 }
 
-void	pb_chunks(t_stack **a, t_stack **b, int chunk_size)
+void	pb_chunks(t_stack **a, t_stack **b, int chunk_size, t_stats *st)
 {
 	int	pushed;
 
 	pushed = 0;
 	while (*a)
 	{
-		if ((*a)->content <= pushed)
+		if ((*a)->index <= pushed)
 		{
-			pb(a, b);
-			rb(b);
+			pb(a, b, st);
+			rb(b, st);
 			pushed++;
 		}
-		else if ((*a)->content <= pushed + chunk_size)
+		else if ((*a)->index <= pushed + chunk_size)
 		{
-			pb(a, b);
+			pb(a, b, st);
 			pushed++;
 		}
 		else
-			ra(a);
+			ra(a, st);
 	}
 }
