@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 09:00:35 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/25 11:23:12 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/25 15:34:52 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@ void	isdoublequoted(t_stack **a, char **av)
 	i = 0;
 	while (split[i])
 	{
+		if (is_flags(split[i]))
+		{
+			i++;
+			continue ;
+		}
 		j = 0;
 		while (split[i][j])
 		{
 			if (j == 0 && (split[i][j] == '-' || split[i][j] == '+'))
 				j++;
 			if (!ft_isdigit(split[i][j]))
-			{
-				write(2, "error\n", 6);
-				exit(1);
-			}
+				return ((void)write(2, "error\n", 6), exit(1));
 			j++;
 		}
 		n = ft_atoi(split[i]);
@@ -51,10 +53,10 @@ void	isunquoted(t_stack **a, int ac, char **av)
 	while (i < ac)
 	{
 		if (is_flags(av[i]))
-			{
-                i++;
-                continue;
-            }
+		{
+			i++;
+			continue ;
+		}
 		j = 0;
 		while (av[i][j])
 		{

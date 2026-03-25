@@ -6,7 +6,7 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 08:31:17 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/25 08:29:45 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/25 15:37:34 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	adaptive(t_stack **a, t_stack **b, t_stats *ops)
 	disorder = compute_disorder(*a);
 	if (disorder < 0.2)
 		selection_sort(a, b, ops);
-	else if (disorder >= 0.2 && disorder < 0.5)
+	else if (disorder <= 0.2 && disorder < 0.5)
 		chunk_sort(a, b,ops);
 	else
 		radix_sort(a, b,ops);
