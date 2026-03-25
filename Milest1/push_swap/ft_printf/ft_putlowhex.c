@@ -6,13 +6,13 @@
 /*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:43:58 by brportos          #+#    #+#             */
-/*   Updated: 2026/02/20 12:06:24 by brportos         ###   ########.fr       */
+/*   Updated: 2026/03/25 10:42:06 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putlowhex(unsigned int nbr, int *len)
+void	ft_putlowhex(int fd, unsigned int nbr, int *len)
 {
 	char	*base;
 
@@ -20,6 +20,6 @@ void	ft_putlowhex(unsigned int nbr, int *len)
 	if (!len)
 		return ;
 	if (nbr > 15)
-		ft_putlowhex(nbr / 16, len);
-	ft_putchar(base[nbr % 16], len);
+		ft_putlowhex(fd, nbr / 16, len);
+	ft_putchar(fd, base[nbr % 16], len);
 }

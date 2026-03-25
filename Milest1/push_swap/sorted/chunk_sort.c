@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 11:14:45 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/24 20:37:25 by portos           ###   ########.fr       */
+/*   Updated: 2026/03/25 08:28:00 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,28 @@ int	max_position(t_stack *b)
 	return (pos);
 }
 
-vvoid	chunk_sort(t_stack **a, t_stack **b, t_stats *st)
+void	chunk_sort(t_stack **a, t_stack **b, t_stats *ops)
 {
-	int	chunk_size;
 	int	size;
+	int	chunk_size;
 
-	if (!a || !*a)
+	if (!*a)
 		return ;
 	size = stack_size(*a);
-	chunk_size = ft_sqrt(size); 
-	pb_chunks(a, b, chunk_size, st);
+	chunk_size = ft_sqr(size);
+	pb_chunks(a, b, chunk_size, ops);
 	while (*b)
 	{
-		if (max_position(*b) <= stack_size(*b) / 2)
+		if (max_position(*b) < stack_size(*b) / 2)
 		{
 			while ((*b)->content != find_max(*b))
-				rb(b, st);
+				rb(b, ops);
 		}
 		else
 		{
 			while ((*b)->content != find_max(*b))
-				rrb(b, st);
+				rrb(b, ops);
 		}
-		pa(a, b, st);
+		pa(a, b, ops);
 	}
 }
-

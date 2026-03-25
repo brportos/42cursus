@@ -3,60 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:28:58 by herinaan          #+#    #+#             */
-/*   Updated: 2026/03/24 20:35:04 by portos           ###   ########.fr       */
+/*   Updated: 2026/03/25 08:27:52 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	stack_swap(t_stack **stack)
+static void	swap(t_stack **stack)
 {
-	int	tmp;
+	t_stack	*first;
+	t_stack	*second;
+	int		tmp;
 
-	if (!stack || !*stack || !(*stack)->next)
+	if (!stack || !(*stack) || !(*stack)->next)
 		return ;
-	tmp = (*stack)->content;
-	(*stack)->content = (*stack)->next->content;
-	(*stack)->next->content = tmp;
+	first = *stack;
+	second = first->next;
+	tmp = first->content;
+	first->content = second->content;
+	second->content = tmp;
 }
 
-void	sa(t_stack **a, t_stats *st)
+void	sa(t_stack **a, t_stats *ops)
 {
-	stack_swap(a);
+	swap(a);
 	write(1, "sa\n", 3);
-	if (st)
+	if (ops)
 	{
-		st->sa++;
-		st->total++;
+		ops->sa++;
+		ops->total_ops++;
 	}
 }
 
-void	sb(t_stack **b, t_stats *st)
+void	sb(t_stack **b, t_stats *ops)
 {
-	if (!b || !*b || !(*b)->next)
-		return ;
-	stack_swap(b);
+	swap(b);
 	write(1, "sb\n", 3);
-	if (st)
+	if (ops)
 	{
-		st->sb++;
-		st->total++;
+		ops->sb++;
+		ops->total_ops++;
 	}
 }
 
-void	ss(t_stack **a, t_stack **b, t_stats *st)
+void	ss(t_stack **a, t_stack **b, t_stats *ops)
 {
-	if ((!a || !*a || !(*a)->next) && (!b || !*b || !(*b)->next))
+	if (!a || !b || !(*a) || !(*b) || !(*a)->next || !(*b)->next)
 		return ;
-	stack_swap(a);
-	stack_swap(b);
+	swap(a);
+	swap(b);
 	write(1, "ss\n", 3);
-	if (st)
+	if (ops)
 	{
-		st->ss++;
-		st->total++;
+		ops->ss++;
+		ops->total_ops++;
 	}
 }

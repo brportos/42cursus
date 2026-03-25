@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_rrotation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 07:36:15 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/24 20:28:34 by portos           ###   ########.fr       */
+/*   Updated: 2026/03/25 08:27:03 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,52 +26,38 @@ static void	stack_rrotation(t_stack **a)
 	last->next = NULL;
 }
 
-void	rra(t_stack **a, t_stats *st)
+void	rra(t_stack **a, t_stats *ops)
 {
 	stack_rrotation(a);
 	write(1, "rra\n", 4);
-	if (st)
+	if (ops)
 	{
-		st->rra++;
-		st->total++;
+		ops->rra++;
+		ops->total_ops++;
 	}
 }
 
-void	rrb(t_stack **b, t_stats *st)
+void	rrb(t_stack **a, t_stats *ops)
 {
-	if (!b || !*b || !(*b)->next)
-		return ;
-	stack_rrotation(b);
+	stack_rrotation(a);
 	write(1, "rrb\n", 4);
-	if (st)
+	if (ops)
 	{
-		st->rrb++;
-		st->total++;
+		ops->rrb++;
+		ops->total_ops++;
 	}
 }
 
-void	rrr(t_stack **a, t_stack **b, t_stats *st)
+void	rrr(t_stack **a, t_stack **b, t_stats *ops)
 {
-	int	rotated;
-
-	rotated = 0;
-	if (a && *a && (*a)->next)
+	if (!a || !*a || !(*a)->next || !b || !*b || !(*b)->next)
+		return ;
+	stack_rrotation(a);
+	stack_rrotation(b);
+	write(1, "rrr\n", 4);
+	if (ops)
 	{
-		stack_rrotation(a);
-		rotated = 1;
-	}
-	if (b && *b && (*b)->next)
-	{
-		stack_rrotation(b);
-		rotated = 1;
-	}
-	if (rotated)
-	{
-		write(1, "rrr\n", 4);
-		if (st)
-		{
-			st->rrr++;
-			st->total++;
-		}
+		ops->rrr++;
+		ops->total_ops++;
 	}
 }

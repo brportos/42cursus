@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: portos <portos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brportos <brportos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 10:57:46 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/24 20:52:02 by portos           ###   ########.fr       */
+/*   Updated: 2026/03/25 08:28:55 by brportos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,48 +28,51 @@ int	ft_sqr(int nb)
 	return (i - 1);
 }
 
-void	sort_small(t_stack **a, t_stack **b, t_stats *st)
+void	sort_small(t_stack **a, t_stack **b, t_stats *ops)
 {
-	int	pos;
 	int	size;
+	int	pos;
 
-	if (!a || !*a || is_sorted(*a))
+	if (!a || !(*a) || is_sorted(*a))
 		return ;
-	while (stack_size(*a) > 5)
+	size = stack_size(*a);
+	while (size > 5)
 	{
 		pos = min_position(*a);
-		size = stack_size(*a);
 		if (pos == 0)
-			pb(a, b, st);
+		{
+			pb(a, b, ops);
+			size--;
+		}
 		else if (pos <= size / 2)
-			ra(a, st);
+			ra(a, ops);
 		else
-			rra(a, st);
+			rra(a, ops);
 	}
-	sort_five(a, b, st);
+	sort_five(a, b, ops);
 	while (*b)
-		pa(a, b, st);
+		pa(a, b, ops);
 }
 
-void	pb_chunks(t_stack **a, t_stack **b, int chunk_size, t_stats *st)
+void	pb_chunks(t_stack **a, t_stack **b, int chunk_size, t_stats *ops)
 {
 	int	pushed;
 
 	pushed = 0;
 	while (*a)
 	{
-		if ((*a)->index <= pushed)
+		if ((*a)->content <= pushed)
 		{
-			pb(a, b, st);
-			rb(b, st);
+			pb(a, b, ops);
+			rb(b, ops);
 			pushed++;
 		}
-		else if ((*a)->index <= pushed + chunk_size)
+		else if ((*a)->content <= pushed + chunk_size)
 		{
-			pb(a, b, st);
+			pb(a, b, ops);
 			pushed++;
 		}
 		else
-			ra(a, st);
+			ra(a, ops);
 	}
 }
