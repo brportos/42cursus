@@ -25,9 +25,22 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
+typedef enum e_stategy
+{
+    SIMPLE,
+    MEDIUM,
+    COMPLEX,
+    ADAPTIVE
+} t_strategy;
+
+typedef struct s_options
+{
+    t_strategy  strategy;
+    int         bench;
+} t_options;
+
 typedef struct s_stats
 {
-	double			disorder;
 	int				sa;
 	int				sb;
 	int				ss;
@@ -41,19 +54,6 @@ typedef struct s_stats
 	int				rrr;
 	int				total_ops;
 }					t_stats;
-
-typedef struct s_select
-{
-	int				simple;
-	int				medium;
-	int				complex;
-	int				adaptive;
-	int				bench;
-	int				total_ops;
-	double			disorder;
-	char			*strategy;
-	char			*complexity;
-}					t_select;
 
 void				pa(t_stack **a, t_stack **b, t_stats *ops);
 void				pb(t_stack **a, t_stack **b, t_stats *ops);
