@@ -6,7 +6,7 @@
 /*   By: herinaan <herinaan@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:25:31 by brportos          #+#    #+#             */
-/*   Updated: 2026/03/27 16:54:02 by herinaan         ###   ########.fr       */
+/*   Updated: 2026/03/30 10:56:08 by herinaan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ typedef struct s_stats
 	int				rrr;
 	int				total_ops;
 }					t_stats;
+
+typedef struct s_strat
+{
+	t_stack			**a;
+	t_stack			**b;
+	t_stats			*ops;
+}					t_strat;
 
 void				pa(t_stack **a, t_stack **b, t_stats *ops);
 void				pb(t_stack **a, t_stack **b, t_stats *ops);
@@ -79,8 +86,7 @@ void				sort_five(t_stack **a, t_stack **b, t_stats *ops);
 void				ft_stackclear(t_stack **a);
 void				isdoublequoted(t_stack **a, char **av);
 void				sort_small(t_stack **a, t_stack **b, t_stats *ops);
-int					apply_flag_strategy(int ac, char **av, t_stack **a,
-						t_stack **b, t_stats *ops);
+int					apply_flag_strategy(int ac, char **av, t_strat *strat);
 int					is_flags(char *str);
 int					count_strategy_flags(int ac, char **av);
 int					count_bench_flags(int ac, char **av);
