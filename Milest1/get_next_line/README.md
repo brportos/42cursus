@@ -1,5 +1,4 @@
 *This project has been created as part of the 42 curriculum by `brportos`.*
-
 # get_next_line
 ## Description
 The `get_next_line` project involves programming a function that reads and returns a line from a given file descriptor.
