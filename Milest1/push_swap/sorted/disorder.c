@@ -134,8 +134,6 @@ void	adaptive(t_stack **a, t_stack **b, t_stats *ops)
 		return (sort_three(a, ops));
 	if (size > 3 && size <= 5)
 		return (sort_five(a, b, ops));
-	if (size <= 15)
-		return (sort_small(a, b, ops));
 	disorder = compute_disorder(*a, ops);
 	if (disorder < 0.2)
 		selection_sort(a, b, ops);

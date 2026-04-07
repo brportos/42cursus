@@ -41,32 +41,6 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
-void	sort_small(t_stack **a, t_stack **b, t_stats *ops)
-{
-	int	size;
-	int	pos;
-
-	if (!a || !(*a) || is_sorted(*a))
-		return ;
-	size = stack_size(*a);
-	while (size > 5)
-	{
-		pos = min_position(*a);
-		if (pos == 0)
-		{
-			pb(a, b, ops);
-			size--;
-		}
-		else if (pos <= size / 2)
-			ra(a, ops);
-		else
-			rra(a, ops);
-	}
-	sort_five(a, b, ops);
-	while (*b)
-		pa(a, b, ops);
-}
-
 int	chunk_exists_in_a(t_stack **a, int min, int max)
 {
 	t_stack	*tmp;
