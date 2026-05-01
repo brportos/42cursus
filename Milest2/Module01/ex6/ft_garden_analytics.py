@@ -21,12 +21,12 @@ class Plant:
         print(f"{self.name}: {self.height}cm, {self.ages} days old")
         self.stats._show_calls += 1
 
-    def grow(self) -> None:
-        self.height = round(self.height + 8.0, 1)
+    def grow(self, increment: float = 8.0) -> None:
+        self.height = round(self.height + increment, 1)
         self.stats._grow_calls += 1
 
-    def age(self) -> None:
-        self.ages += 20
+    def age(self, increment: int = 20) -> None:
+        self.ages += increment
         self.stats._age_calls += 1
 
     @staticmethod
@@ -91,8 +91,8 @@ class Seed(Flower):
         super().__init__(name, height, age, color)
         self.seeds = int(seeds)
 
-    def grow(self) -> None:
-        self.height = round(self.height + 30.0, 1)
+    def grow(self, increment: float = 30.0) -> None:
+        self.height = round(self.height + increment, 1)
         self.stats._grow_calls += 1
 
     def show(self) -> None:

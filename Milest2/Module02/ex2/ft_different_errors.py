@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-def garden_operations(operation_number: int) -> int:
+def garden_operations(operation_number: int = 0) -> int:
     if operation_number == 0:
         int("abc")
     elif operation_number == 1:
@@ -29,3 +29,7 @@ def test_error_types() -> None:
         except TypeError as e:
             print(f"Caught TypeError: {e}")
     print("\nAll error types tested successfully!")
+
+
+if __name__ == "__main__":
+    test_error_types()
