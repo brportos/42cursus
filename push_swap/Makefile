@@ -9,8 +9,11 @@ OBJ_DIR = obj
 SRC = operations/swap.c \
 		operations/stack_rotation.c \
 		operations/stack_rrotation.c \
+		operations/push_stack.c \
 		sorted/selection_sort.c \
 		sorted/chunk_sort.c \
+		sorted/disorder.c \
+		sorted/radix_sort.c \
 		utils/chunk_utils.c \
 		sorted/radix_sort.c \
 		utils/linked_stack.c \
